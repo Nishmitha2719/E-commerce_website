@@ -25,12 +25,11 @@ Accept: 'application/form-data',
 body: JSON.stringify(formData),
 }).then((response)=> response.json()).then((data)=>responseData=data)
 
-if (responseData.success){
-localStorage.setItem('auth-token', responseData.token);
-window.location.replace("/");
-}
-else{
-  alert(responseData.alert)
+if (responseData.success) {
+  localStorage.setItem("auth-token", responseData.token);
+  window.location.replace("/");
+} else {
+  alert(responseData.message);
 }
 
   };

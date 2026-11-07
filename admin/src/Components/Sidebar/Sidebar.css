@@ -1,21 +1,29 @@
 .sidebar{
-display: flex;
-flex-direction: column;
-padding-top: 30px;
-gap: 20px;
-width: 100%;
-max-width: 250px;
-height: 100vh;
-background: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  gap: 20px;
+  width: 100%;
+  max-width: 250px;
+  height: 100vh;
+  background: white;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
 }
+
 .sidebar-item{
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 0px 20px;
-padding: 5px 10px;
-border-radius: 6px;
-background: #f6f6f6;
-gap: 20px;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: #f6f6f6;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background: #e0e0e0;
+  transform: translateX(5px);
 }

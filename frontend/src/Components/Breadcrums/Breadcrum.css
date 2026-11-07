@@ -1,10 +1,26 @@
-.breadcrum{
-display: flex;
-align-items: center;
-gap: 8px;
-color: #5e5e5e;
-font-size: 16px;
-font-weight: 600;
-margin: 60px 170px;
-text-transform: capitalize
+.breadcrum {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: clamp(20px, 3vw, 36px);
+  padding-bottom: clamp(18px, 2.5vw, 28px);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.breadcrum a {
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrum a:hover { color: var(--blue); }
+.breadcrum__current {
+  color: var(--ink);
+  font-weight: 500;
+  max-width: 40ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

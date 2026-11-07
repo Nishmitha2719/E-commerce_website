@@ -1,0 +1,27 @@
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cursor-ring.is-visible { opacity: 1; }
+.cursor-ring span {
+  position: absolute;
+  left: -16px;
+  top: -16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(23, 24, 31, 0.35);
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.5), rgba(185, 169, 255, 0.08));
+  transition: transform 0.35s var(--ease-out), background 0.3s, border-color 0.3s;
+}
+.cursor-ring.is-hover span {
+  transform: scale(1.7);
+  border-color: rgba(54, 87, 255, 0.4);
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), rgba(54, 87, 255, 0.1));
+}
+.cursor-ring.is-down span { transform: scale(0.8); }

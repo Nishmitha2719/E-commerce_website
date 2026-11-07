@@ -1,0 +1,135 @@
+.categories {
+  position: relative;
+  padding: clamp(72px, 10vw, 140px) 0 clamp(56px, 8vw, 110px);
+  scroll-margin-top: var(--nav-h);
+  background: linear-gradient(180deg, rgba(246, 245, 249, 0) 0%, rgba(246, 245, 249, 0.6) 30%, rgba(246, 245, 249, 0.75) 100%);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  grid-template-rows: repeat(2, minmax(220px, 300px));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.cat-panel {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  text-decoration: none;
+  isolation: isolate;
+  background: #d9dae3;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.5s var(--ease-out);
+}
+.cat-panel--tall { grid-row: span 2; border-radius: var(--radius-lg) 120px var(--radius-lg) var(--radius-lg); }
+.cat-panel:nth-child(3) { border-radius: var(--radius-lg) var(--radius-lg) 120px var(--radius-lg); }
+.cat-panel:hover { box-shadow: var(--shadow-lift); }
+
+.cat-panel__media { position: absolute; inset: 0; }
+.cat-panel__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* the banners keep the model on the right; crop to the model */
+  object-position: 86% 50%;
+  transform: scale(1.02);
+  transition: transform 1.4s var(--ease-out), filter 0.8s;
+}
+.cat-panel--wide .cat-panel__media img { object-position: 92% 30%; }
+.cat-panel:hover .cat-panel__media img { transform: scale(1.09); filter: saturate(1.08); }
+
+/* Dark gradient for legible titles + liquid chrome wash that flows in on hover */
+.cat-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(200deg, rgba(21, 22, 27, 0) 35%, rgba(21, 22, 27, 0.7) 100%);
+}
+.cat-panel__liquid {
+  position: absolute;
+  z-index: 1;
+  inset: -40%;
+  background:
+    radial-gradient(30% 30% at 30% 70%, rgba(185, 169, 255, 0.55), transparent 70%),
+    radial-gradient(28% 28% at 60% 85%, rgba(54, 87, 255, 0.45), transparent 70%),
+    radial-gradient(24% 24% at 20% 95%, rgba(255, 194, 220, 0.5), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateY(20%) scale(0.8);
+  transition: opacity 0.8s var(--ease-out), transform 1.2s var(--ease-out);
+}
+.cat-panel:hover .cat-panel__liquid { opacity: 1; transform: none; }
+
+.cat-panel__content {
+  position: absolute;
+  z-index: 2;
+  left: clamp(20px, 3vw, 36px);
+  right: clamp(20px, 3vw, 36px);
+  bottom: clamp(18px, 3vw, 32px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cat-panel__index {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: clamp(20px, 3vw, 36px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cat-panel__title {
+  font-size: clamp(48px, 6.5vw, 96px);
+  line-height: 0.9;
+  display: flex;
+}
+.cat-panel__title span {
+  display: inline-block;
+  transition: transform 0.6s var(--ease-out);
+  transition-delay: calc(var(--c) * 30ms);
+}
+.cat-panel:hover .cat-panel__title span { transform: translateY(-8px); font-style: italic; }
+
+.cat-panel__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.3s, color 0.3s;
+}
+.cat-panel:hover .cat-panel__meta { background: var(--ink); color: #fff; }
+
+@media (max-width: 800px) {
+  .cat-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 200px;
+  }
+  .cat-panel--tall { grid-column: span 2; grid-row: auto; border-radius: var(--radius-lg) 80px var(--radius-lg) var(--radius-lg); }
+  .cat-panel--tall .cat-panel__media img { object-position: 88% 30%; }
+  .cat-panel:nth-child(3) { border-radius: var(--radius-lg) var(--radius-lg) 60px var(--radius-lg); }
+  .cat-panel__meta { padding: 8px 12px; font-size: 12px; }
+}
+@media (max-width: 480px) {
+  .cat-grid { grid-template-rows: 260px 180px; }
+  .cat-panel--wide .cat-panel__meta { display: none; }
+}

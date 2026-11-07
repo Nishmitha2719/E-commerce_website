@@ -1,0 +1,54 @@
+.liquid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--pearl);
+}
+
+/* CSS fallback: shown instantly on first paint and on devices without WebGL */
+.liquid-bg__fallback {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 35% at 70% 30%, rgba(196, 182, 255, 0.75), transparent 70%),
+    radial-gradient(35% 30% at 25% 70%, rgba(120, 156, 255, 0.45), transparent 70%),
+    radial-gradient(30% 28% at 80% 80%, rgba(255, 196, 224, 0.55), transparent 70%),
+    radial-gradient(50% 40% at 30% 20%, rgba(255, 255, 255, 0.95), transparent 70%),
+    linear-gradient(160deg, #f4f3f8 0%, #dcdde6 45%, #eceaf4 100%);
+  filter: saturate(1.05);
+  animation: liquid-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes liquid-drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(-3%, 2%, 0) rotate(4deg) scale(1.05); }
+  100% { transform: translate3d(2%, -2%, 0) rotate(-3deg) scale(1.02); }
+}
+
+.liquid-bg__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.liquid-bg__canvas.is-ready { opacity: 1; }
+
+/* cursor-following light, works with or without WebGL */
+.liquid-bg__sheen {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at calc(var(--mx, 0.6) * 100%) calc(var(--my, 0.4) * 100%),
+    rgba(255, 255, 255, 0.28),
+    transparent 60%
+  );
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-bg__fallback { animation: none; }
+}

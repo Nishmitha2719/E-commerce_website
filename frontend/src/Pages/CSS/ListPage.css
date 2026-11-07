@@ -1,0 +1,21 @@
+.list-page {
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(80px, 10vw, 140px);
+  min-height: calc(100vh - var(--nav-h));
+}
+.list-page__head { margin-bottom: clamp(28px, 4vw, 48px); }
+.list-page__head h1 {
+  font-size: clamp(52px, 8vw, 110px);
+  margin: 10px 0 12px;
+  word-break: break-word;
+}
+.list-page__head p { color: var(--muted); }
+.list-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 60px 0;
+  color: var(--ink-2);
+}
+.list-page__empty div { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
